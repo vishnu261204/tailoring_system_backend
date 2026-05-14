@@ -4,7 +4,13 @@ WORKDIR /app
 
 COPY composer.json composer.lock ./
 
-RUN composer install 
+RUN composer install \
+    --no-dev \
+    --no-interaction \
+    --no-progress \
+    --no-scripts \
+    --optimize-autoloader \
+    --prefer-dist
 
 FROM node:20-bookworm-slim AS frontend
 
