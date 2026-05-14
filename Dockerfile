@@ -6,6 +6,8 @@ FROM composer:2 AS vendor
 WORKDIR /app
 
 COPY composer.json composer.lock ./
+COPY artisan ./
+COPY bootstrap ./bootstrap
 RUN composer install \
     --no-dev \
     --no-interaction \
