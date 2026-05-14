@@ -6,16 +6,9 @@ FROM composer:2 AS vendor
 WORKDIR /app
 
 COPY composer.json composer.lock ./
-RUN composer install \
-    --no-dev \
-    --no-interaction \
-    --no-progress \
-    --prefer-dist \
-    --optimize-autoloader
 
-# ---------------------------
-# 2. Node (Frontend build)
-# ---------------------------
+RUN composer install 
+
 FROM node:20-bookworm-slim AS frontend
 
 WORKDIR /app
