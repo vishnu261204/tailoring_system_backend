@@ -47,7 +47,10 @@ RUN apt-get update && apt-get install -y \
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
     && docker-php-ext-install pdo_mysql mbstring bcmath gd xml zip
 
-RUN a2enmod rewrite headers
+RUN a2dismod mpm_event || true \
+    && a2dismod mpm_worker || true \
+    && a2enmod mpm_prefork \
+    && a2enmod rewrite
 
 COPY . .
 COPY --from=vendor /app/vendor ./vendor
