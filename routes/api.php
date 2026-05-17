@@ -10,21 +10,7 @@ use App\Http\Controllers\API\DashboardController;
 use App\Http\Controllers\API\WhatsAppController;
 use App\Http\Controllers\API\ReportController;
 
-Route::get('/', function() {
-    return response()->json([
-        'success' => true,
-        'message' => 'Tailoring Management System API is working!',
-        'version' => '1.0.0',
-        'endpoints' => [
-            'auth' => '/api/login, /api/register',
-            'customers' => '/api/customers',
-            'orders' => '/api/orders',
-            'inventory' => '/api/inventory'
-        ],
-        'status' => 'active',
-        'timestamp' => now()->toDateTimeString()
-    ]);
-});
+Route::get('/', [App\Http\Controllers\API\ApiController::class, 'index']);
 
 // Public routes
 Route::post('/login', [AuthController::class, 'login']);
